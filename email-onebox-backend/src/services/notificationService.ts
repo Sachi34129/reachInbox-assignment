@@ -1,8 +1,8 @@
 // notificationService.ts
 import axios from 'axios';
 
-const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || 'https://hooks.slack.com/services/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';
-const EXTERNAL_WEBHOOK_URL = process.env.EXTERNAL_WEBHOOK_URL || 'https://webhook.site/3df07aa2-372d-4c03-b8a2-0bbfbd35d651';
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || 'https://hooks.slack.com/services/T09MGMW1QJG/B09M9PTPVN1/********************';
+const EXTERNAL_WEBHOOK_URL = process.env.EXTERNAL_WEBHOOK_URL || 'https://webhook.site/3df07aa2-372d-4c03-b8a2-**********';
 
 /**
  * Send Slack notification for "Interested" emails (plain text with safe characters)
