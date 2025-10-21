@@ -1,0 +1,555 @@
+/* ---------- GLOBAL STYLES ---------- */
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #0b1322;
+    color: #e0e6ed;
+    font-family: "Inter", system-ui, sans-serif;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  /* ---------- HEADER ---------- */
+  .inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111a2b;
+    padding: 14px 24px;
+    border-bottom: 1px solid #1e2a3d;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .inbox-header h1 {
+    font-size: 18px;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  .inbox-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .search-input {
+    background-color: #1a253a;
+    border: none;
+    color: #e0e6ed;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 200px;
+  }
+  
+  .search-input::placeholder {
+    color: #7b8ca9;
+  }
+  
+  .compose-btn {
+    background-color: #06b6d4;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  
+  .compose-btn:hover {
+    background-color: #22d3ee;
+  }
+  
+  /* ---------- MAIN CONTAINER ---------- */
+  .inbox-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inbox-container {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+  }
+  
+  /* ---------- FIXED SIDEBAR ---------- */
+.sidebar {
+    position: fixed;
+    top: 60px; /* below header */
+    left: 0;
+    height: calc(100vh - 60px);
+    width: 250px;
+    background-color: #0d1626; /* solid dark background */
+    color: #e0e6ed;
+    border-right: 1px solid #1e2a3d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 16px;
+    z-index: 5;
+  }
+  
+  .sidebar-top {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .sidebar-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .account-select {
+    width: 100%;
+    padding: 8px;
+    background-color: #162238;
+    color: #e0e6ed;
+    border: none;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    outline: none;
+  }
+  
+  .no-folders {
+    color: #7c8797;
+    font-size: 14px;
+  }
+  
+  .folder-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #cfd6e1;
+  }
+  
+  .folder-item:hover {
+    background-color: #1b2b46;
+  }
+  
+  .folder-item.active {
+    background-color: #2563eb;
+    color: #fff;
+  }
+  
+  .folder-item .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  
+  .sidebar-bottom {
+    border-top: 1px solid #1e2a3d;
+    padding-top: 12px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .settings-icon {
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .settings-icon:hover {
+    color: #38bdf8;
+  }
+  
+  /* ---------- MAIN SECTIONS ---------- */
+  .inbox-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  /* ---------- EMAIL LIST ---------- */
+  .email-list-section {
+    width: 400px;
+    background-color: #0f1b2e;
+    border-right: 1px solid #1e2a3d;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 8px 0;
+  }
+  
+  .email-item {
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e2a3d;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .email-item:hover {
+    background-color: #182741;
+  }
+  
+  .email-item .sender {
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .email-item .subject {
+    color: #a0aec0;
+    font-size: 14px;
+  }
+  
+  .email-item .date {
+    color: #8b98a5;
+    font-size: 12px;
+  }
+  
+  /* ---------- RIGHT SECTION ---------- */
+  .email-right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #0f1729;
+  }
+  
+  /* ---------- EMAIL DETAIL ---------- */
+  .email-detail-section {
+    flex: 0.65;
+    padding: 24px;
+    border-bottom: 1px solid #1e2a3d;
+    overflow-y: auto;
+  }
+  
+  .email-detail-section h2 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  
+  .email-detail-section h3 {
+    color: #8fa3bf;
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  
+  .email-detail-section .body {
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+  
+  .no-email {
+    text-align: center;
+    color: #6b7a90;
+    margin-top: 80px;
+  }
+  
+  /* ---------- AI PANEL ---------- */
+  .ai-panel-section {
+    flex: 0.35;
+    background-color: #111a2b;
+    border-top: 1px solid #1e2a3d;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ai-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #c9d1da;
+    margin-bottom: 12px;
+  }
+  
+  .ai-suggestion {
+    background-color: #1b2b46;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+  }
+  
+  .ai-suggestion:hover {
+    background-color: #233a5f;
+  }
+  
+  .ai-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+  
+  .btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-custom {
+    background-color: #2e3d55;
+    color: #cfd6e1;
+  }
+  
+  .btn-custom:hover {
+    background-color: #3b4d6d;
+  }
+  
+  .btn-not {
+    background-color: #06b6d4;
+    color: #fff;
+  }
+  
+  .btn-not:hover {
+    background-color: #22d3ee;
+  }
+  
+  /* ---------- SCROLLBAR ---------- */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #24324a;
+    border-radius: 4px;
+  }
+
+  /* Base layout */
+.inbox-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-color: #1e1e1e;
+    color: white;
+    overflow: hidden;
+  }
+  
+  /* Header section */
+  .inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #111;
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+  }
+  
+  .inbox-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .inbox-header-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .search-input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background: #222;
+    color: #fff;
+    width: 220px;
+  }
+  
+  .compose-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .compose-btn:hover {
+    background: #005fcc;
+  }
+  
+  /* Main container */
+  .inbox-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  /* Sidebar is fixed */
+  .inbox-container > .Sidebar {
+    flex-shrink: 0;
+  }
+  
+  /* Main content next to sidebar */
+  .inbox-main {
+    display: flex;
+    flex: 1;
+    margin-left: 240px; /* width of sidebar */
+    overflow: hidden;
+  }
+  
+  /* Email list section */
+  .email-list-section {
+    max-width: 60%;
+    margin-left: 10px;
+    padding-left: 10px;
+    background: #2a2a2a;
+    border-right: 1px solid #333;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Right column (email detail + AI panel) */
+  .email-right-section {
+    flex: 1;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    background: #181818;
+    overflow: hidden;
+    border-left: 1px solid #333;
+  }
+  
+  /* Email detail (top half) */
+  .email-detail-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 36px;
+    border-bottom: 1px solid #333;
+  }
+  
+  /* AI Reply section (bottom half) */
+  .ai-panel-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    background: #1f1f1f;
+    border-top: 1px solid #333;
+  }
+  
+  /* Empty state */
+  .no-email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #777;
+    font-style: italic;
+  }
+  
+  /* Scrollbars for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+
+  /* Email list items */
+.email-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  
+  .email-item:hover {
+    background-color: #3a3a3a;
+  }
+  
+  .category-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  
+  .email-info {
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .email-subject {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .email-snippet {
+    font-size: 0.85rem;
+    color: #aaa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .email-time {
+    font-size: 0.8rem;
+    color: #bbb;
+    margin-left: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* CATEGORY DOTS (folder colors) */
+  .folder-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 8px;
+    padding: 8px;
+  }
+  
+  .folder-item:hover {
+    background-color: grey;
+  }
+  
+  .folder-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Example color classes — dynamically match your folder colors */
+  .folder-dot[data-color="#4db6ac"] { background-color: #4db6ac; }
+  .folder-dot[data-color="#2ecc71"] { background-color: #2ecc71; }
+  .folder-dot[data-color="#3498db"] { background-color: #3498db; }
+  .folder-dot[data-color="#f39c12"] { background-color: #f39c12; }
+  .folder-dot[data-color="#e74c3c"] { background-color: #e74c3c; }
+  .folder-dot[data-color="#9b59b6"] { background-color: #9b59b6; }
+  
+  
