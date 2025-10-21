@@ -26,6 +26,19 @@ A full-stack intelligent email management platform that syncs multiple IMAP acco
 
 ---
 
+## 📸 Preview
+
+### 🎬 Demo Video
+> 🎥 [Watch 5-Min Demo](https://drive.google.com/file/d/1xry1csFSHRtd_lJev3e8aBHP06tj60Kk/view?usp=sharing)  
+> *(Showcasing real-time sync, AI categorization, Slack + webhook triggers, and RAG reply suggestions)*
+
+---
+
+### 🖼️ Screenshots
+<img width="1470" height="718" alt="Screenshot 2025-10-21 at 7 35 15 AM" src="https://github.com/user-attachments/assets/8073ac68-80ec-4fc8-9101-162f89c7aef6" />
+
+---
+
 ## 🧩 Core Features
 
 ### 1️⃣ Real-Time Email Synchronization
